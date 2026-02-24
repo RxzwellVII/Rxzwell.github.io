@@ -1,4 +1,4 @@
-# 🎤 YOUR ARTIST NAME
+# 🎤 Rxzwellian Society 
 
 > Independent Musician | Producer | Songwriter  
 
@@ -8,7 +8,7 @@ Welcome to my official website.
 
 ## 🔥 About Me
 
-I’m **YOUR ARTIST NAME**, a musician creating [genre] music inspired by [influences].  
+I’m **Rxzwell**, a musician creating [genre] music inspired by [influences].  
 My sound blends [style 1] with [style 2] to create something unique and real.
 
 ---
@@ -66,8 +66,8 @@ Download EPK: https://your-link.com
 
 ## 🌎 Follow Me
 
-- Instagram: https://instagram-link
-- TikTok: https://tiktok-link
+- [(https://on.soundcloud.com/etqZNktqCpJtsaJ1Ue)
+- - TikTok: https://tiktok-link
 - Twitter/X: https://twitter-link
 
 ---
