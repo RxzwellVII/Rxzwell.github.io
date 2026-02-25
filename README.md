@@ -187,19 +187,34 @@ text-align:center;
 <source src="intro.mp3" type="audio/mpeg">
 </audio>
 
-<section class="hero">
-<h1 class="neon-green">RXZWELL</h1>
-<div class="pulse7 neon-green">7</div>
-<p class="neon-pink">Genre Fluid Punk — Broward, Florida</p>
+<section class="section">
+  <h2 class="neon-pink">STREAM</h2>
+  <div class="links">
+    <a href="https://open.spotify.com/artist/6qmhxNUynVviDvxQRggtFA" target="_blank">Spotify</a>
+    <a href="https://music.apple.com/us/artist/rxzwell/1720338869" target="_blank">Apple Music</a>
+    <a href="https://on.soundcloud.com/fKI5mvsiiI3ReV02WA" target="_blank">SoundCloud</a>
+    <a href="https://bandlab.com/post/eee5a961-26a3-4086-be4b-ea691554e8c9" target="_blank">BandLab</a>
+  </div>
+
+  <br><br>
+
+  <iframe style="border-radius:12px"
+    src="https://open.spotify.com/embed/artist/6qmhxNUynVviDvxQRggtFA"
+    width="100%" height="352" frameborder="0"
+    allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+  </iframe>
 </section>
 
 <section class="section">
-<h2 class="neon-green">STREAM</h2>
-<div class="links">
-<a href="https://open.spotify.com/artist/6qmhxNUynVviDvxQRggtFA" target="_blank">Spotify</a>
-<a href="https://music.apple.com/us/artist/rxzwell/1720338869" target="_blank">Apple Music</a>
-<a href="https://on.soundcloud.com/fKI5mvsiiI3ReV02WA" target="_blank">SoundCloud</a>
-</div>
+  <h2 class="neon-green">CONNECT</h2>
+  <div class="links">
+    <a href="https://youtube.com/@rxzwell" target="_blank">YouTube</a>
+    <a href="https://instagram.com/rxzwell" target="_blank">Instagram</a>
+    <a href="https://twitch.tv/rxzwell" target="_blank">Twitch</a>
+    <a href="https://www.linkedin.com/in/rxzwell-vii-b935922bb/" target="_blank">LinkedIn</a>
+    <a href="https://pin.it/1pgh7Sbk8" target="_blank">Pinterest</a>
+  </div>
+</section></div>
 
 <br><br>
 
