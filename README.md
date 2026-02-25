@@ -3,211 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rxzwell — Official</title>
+<title>Rxzwell | Official</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
---bg:#050505;
---neon1:#00f0ff;
---neon2:#00ff9c;
---text:#e5e5e5;
---gray:#1a1a1a;
---border:#2a2a2a;
-}
+* {margin:0;padding:0;box-sizing:border-box;}
 
-*{margin:0;padding:0;box-sizing:border-box}
 body{
-background:var(--bg);
-color:var(--text);
-font-family:'Inter',sans-serif;
+background:#050507;
+color:white;
+font-family:'Rajdhani',sans-serif;
 overflow-x:hidden;
+cursor: crosshair;
 }
 
-/* Y2K grid background */
-body::before{
-content:"";
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:
-linear-gradient(to right, #111 1px, transparent 1px),
-linear-gradient(to bottom, #111 1px, transparent 1px);
-background-size:40px 40px;
-opacity:.25;
-z-index:-1;
+/* Optional custom cursor */
+/* body { cursor: url('cursor.png'), auto; } */
+
+.neon-green{
+color:#00ff99;
+text-shadow:0 0 8px #00ff99,0 0 25px #00ff99;
 }
 
-/* Header */
-header{
+.neon-pink{
+color:#ff00cc;
+text-shadow:0 0 8px #ff00cc,0 0 25px #ff00cc;
+}
+
+/* HERO */
+.hero{
 height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.85)),
+url('rxzwell-hero.jpg') center/cover no-repeat;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-border-bottom:1px solid var(--border);
+position:relative;
 }
 
-h1{
+.hero h1{
 font-family:'Orbitron',sans-serif;
-font-size:4rem;
-letter-spacing:4px;
-background:linear-gradient(90deg,var(--neon1),var(--neon2));
--webkit-background-clip:text;
-color:transparent;
-text-shadow:0 0 15px var(--neon1);
-animation:flicker 3s infinite alternate;
+font-size:5rem;
+letter-spacing:10px;
+animation:glitch 1.5s infinite;
 }
 
-@keyframes flicker{
-0%{opacity:1}
-48%{opacity:.85}
-50%{opacity:.4}
-52%{opacity:.9}
-100%{opacity:1}
+@keyframes glitch{
+0%{text-shadow:2px 2px #ff00cc,-2px -2px #00ff99;}
+50%{text-shadow:-2px -2px #ff00cc,2px 2px #00ff99;}
+100%{text-shadow:2px -2px #ff00cc,-2px 2px #00ff99;}
 }
 
-.tag{
+.pulse7{
+font-size:3rem;
 margin-top:15px;
-color:#777;
-font-size:14px;
-letter-spacing:2px;
+animation:pulse 2s infinite;
 }
 
-.btn{
-margin-top:40px;
-padding:12px 30px;
-border:1px solid var(--neon1);
-color:var(--neon1);
-text-decoration:none;
+@keyframes pulse{
+0%{opacity:1;text-shadow:0 0 10px #00ff99;}
+50%{opacity:.5;text-shadow:0 0 40px #00ff99;}
+100%{opacity:1;text-shadow:0 0 10px #00ff99;}
+}
+
+/* Scroll distortion */
+.section{
+padding:100px 20px;
+max-width:1100px;
+margin:auto;
+text-align:center;
+transition:all .6s ease;
+}
+
+.section:hover{
+transform:scale(1.02);
+filter:contrast(120%);
+}
+
+.section h2{
 font-family:'Orbitron';
-transition:.3s;
-}
-
-.btn:hover{
-background:var(--neon1);
-color:black;
-box-shadow:0 0 20px var(--neon1);
-}
-
-/* Sections */
-section{
-padding:80px 10%;
-border-bottom:1px solid var(--border);
-}
-
-h2{
-font-family:'Orbitron';
+font-size:2.5rem;
 margin-bottom:30px;
-color:var(--neon2);
-letter-spacing:3px;
 }
 
-.card{
-background:var(--gray);
-padding:30px;
-border:1px solid var(--border);
-box-shadow:0 0 15px rgba(0,255,200,.05);
-}
-
-/* Social links */
-.socials a{
+/* Buttons */
+.links a{
 display:inline-block;
-margin:10px 20px 0 0;
-color:var(--neon1);
+margin:10px;
+padding:14px 30px;
+border:2px solid #00ff99;
+color:#00ff99;
 text-decoration:none;
-font-weight:500;
+font-weight:600;
 transition:.3s;
 }
 
-.socials a:hover{
-color:var(--neon2);
-text-shadow:0 0 10px var(--neon2);
+.links a:hover{
+background:#00ff99;
+color:black;
+box-shadow:0 0 20px #00ff99;
+transform:scale(1.05);
 }
 
-/* Email */
+/* Tour cards */
+.tour{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.tour div{
+border:1px solid #222;
+padding:20px;
+width:250px;
+background:#0f0f14;
+}
+
+/* Merch */
+.merch img{
+width:200px;
+border:1px solid #222;
+margin:15px;
+transition:.3s;
+}
+
+.merch img:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px #ff00cc;
+}
+
+/* Email form */
 input[type=email]{
 padding:12px;
-background:black;
-border:1px solid var(--border);
-color:white;
 width:250px;
+background:#111;
+border:1px solid #00ff99;
+color:white;
 }
 
 button{
-padding:12px 25px;
+padding:12px 20px;
+background:#00ff99;
 border:none;
-background:var(--neon2);
-color:black;
-font-weight:bold;
 cursor:pointer;
+font-weight:bold;
 }
 
-button:hover{
-box-shadow:0 0 15px var(--neon2);
+/* Scanlines */
+body::after{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:repeating-linear-gradient(
+to bottom,
+rgba(255,255,255,0.02),
+rgba(255,255,255,0.02) 1px,
+transparent 1px,
+transparent 3px);
+pointer-events:none;
 }
 
-/* Footer */
 footer{
+padding:40px;
+opacity:.6;
+border-top:1px solid #222;
 text-align:center;
-padding:30px;
-font-size:12px;
-color:#666;
 }
+
 </style>
 </head>
-
 <body>
 
-<header>
-<h1>RXZWELL</h1>
-<div class="tag">DIGITAL CHAOS • NEON FUTURE • 2000s CORE</div>
-<a href="#music" class="btn">ENTER</a>
-</header>
+<!-- Optional Intro Audio -->
+<audio autoplay loop muted>
+<source src="intro.mp3" type="audio/mpeg">
+</audio>
 
-<section id="music">
-<h2>LATEST DROP</h2>
-<div class="card">
-<iframe style="width:100%;height:315px;border:none;"
-src="https://open.spotify.com/embed/track/YOURTRACKID">
+<section class="hero">
+<h1 class="neon-green">RXZWELL</h1>
+<div class="pulse7 neon-green">7</div>
+<p class="neon-pink">Genre Fluid Punk — Broward, Florida</p>
+</section>
+
+<section class="section">
+<h2 class="neon-green">STREAM</h2>
+<div class="links">
+<a href="https://open.spotify.com/artist/6qmhxNUynVviDvxQRggtFA" target="_blank">Spotify</a>
+<a href="https://music.apple.com/us/artist/rxzwell/1720338869" target="_blank">Apple Music</a>
+<a href="https://on.soundcloud.com/fKI5mvsiiI3ReV02WA" target="_blank">SoundCloud</a>
+</div>
+
+<br><br>
+
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/artist/6qmhxNUynVviDvxQRggtFA"
+width="100%" height="352" frameBorder="0"
+allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
 </iframe>
+</section>
+
+<section class="section">
+<h2 class="neon-pink">TOUR</h2>
+<div class="tour">
+<div>
+<h3>Miami, FL</h3>
+<p>March 12, 2026</p>
+</div>
+<div>
+<h3>Orlando, FL</h3>
+<p>April 2, 2026</p>
+</div>
+<div>
+<h3>Tampa, FL</h3>
+<p>April 18, 2026</p>
+</div>
 </div>
 </section>
 
-<section>
-<h2>CONNECT</h2>
-<div class="socials">
-<a href="#">Instagram</a>
-<a href="#">YouTube</a>
-<a href="#">TikTok</a>
-<a href="#">X</a>
+<section class="section">
+<h2 class="neon-green">MERCH</h2>
+<div class="merch">
+<img src="https://via.placeholder.com/200x250" alt="Merch1">
+<img src="https://via.placeholder.com/200x250" alt="Merch2">
 </div>
 </section>
 
-<section>
-<h2>JOIN THE LIST</h2>
-<div class="card">
-<form action="YOURMAILCHIMPLINK" method="post" target="_blank">
-<input type="email" name="EMAIL" placeholder="Enter email" required>
-<button type="submit">SUBSCRIBE</button>
+<section class="section">
+<h2 class="neon-pink">JOIN THE UNDERGROUND</h2>
+<form>
+<input type="email" placeholder="Enter your email">
+<button>SUBMIT</button>
 </form>
-</div>
 </section>
 
-<section>
-<h2>ABOUT</h2>
-<div class="card">
+<section class="section">
+<h2 class="neon-green">EPK</h2>
 <p>
-Rxzwell is a dark neon digital entity blending early internet aesthetics
-with futuristic sound design.
+Rxzwell is a Broward, Florida-based genre-fluid punk artist blending distortion,
+emotion, and futuristic rebellion. Available for booking, collaborations, and press.
 </p>
-</div>
+<br>
+<a class="links" href="mailto:yourbookingemail@email.com">BOOKING INQUIRIES</a>
 </section>
 
 <footer>
-© 2026 RXZWELL — ALL RIGHTS RESERVED
+© 2026 Rxzwell — All Rights Reserved
 </footer>
 
 </body>
