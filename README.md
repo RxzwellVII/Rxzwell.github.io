@@ -1,208 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rxzwell — Creat0r 0F ARt</title>
-  <meta name="description" content="Rxzwell · Broward, Florida · Genre FLuid · Creat0r 0F ARt" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rxzwell-VII • Genre Fluid Creator • Broward, FL</title>
   <style>
-    :root{
-      --bg:#05060a;
-      --fg:#e6e6ff;
-      --neon:#6b7cff;
-      --pink:#ff4fd8;
-      --cyan:#00f0ff;
-      --muted:#9aa0ff;
-      --card:rgba(255,255,255,.05);
-      --glass:rgba(20,20,40,.55);
-      --online:#00ff9c;
-      --offline:#444;
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      min-height:100vh;
-      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      color:var(--fg);
-      background:
-        radial-gradient(1200px 600px at 10% 10%, rgba(0,240,255,.08), transparent 40%),
-        radial-gradient(800px 600px at 90% 20%, rgba(255,79,216,.08), transparent 40%),
-        linear-gradient(180deg, #04050a, #07081a 60%, #04050a);
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background:#000;
+      color:#0f0;
+      font-family: 'Courier New', Courier, monospace;
       overflow-x:hidden;
+      cursor: none; /* Hide default cursor */
     }
-
-    /* Scanlines */
-    body::after{
-      content:"";
-      position:fixed; inset:0;
+    canvas {
+      position:fixed;
+      top:0; left:0;
+      z-index:1;
+    }
+    .content {
+      position:relative;
+      z-index:10;
+      min-height:100vh;
+      padding:2rem;
+      text-align:center;
+    }
+    h1 {
+      font-size:4rem;
+      text-shadow:0 0 10px #0f0, 0 0 20px #0f0, 0 0 40px #0f0;
+      margin:1rem 0;
+      letter-spacing:0.1em;
+      animation:glitch 4s infinite;
+    }
+    h2 {
+      font-size:2.5rem;
+      margin:2rem 0 1rem;
+      text-shadow:0 0 15px #0f0;
+    }
+    .cursor {
+      position:fixed;
+      width:40px;
+      height:40px;
       pointer-events:none;
-      background:repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,.03) 0px,
-        rgba(255,255,255,.02) 1px,
-        rgba(0,0,0,0) 3px
-      );
-      mix-blend-mode:overlay;
-      opacity:.15;
+      transform:translate(-50%, -50%);
+      z-index:9999;
+      background:url('https://thumbs.dreamstime.com/b/cat-digital-background-digitally-generated-image-neon-green-glow-set-against-backdrop-binary-code-reminiscent-matrix-428414002.jpg') center/cover no-repeat;
+      border-radius:50%;
+      box-shadow:0 0 20px #0f0, 0 0 40px #0f0, inset 0 0 10px #0f0;
+      mix-blend-mode:screen;
+      animation:pulse 2s infinite alternate, glitch-cursor 3s infinite;
     }
-
-    .wrap{max-width:1100px;margin:0 auto;padding:28px 20px 80px}
-
-    /* HERO */
-    header{text-align:center;padding:24px 0}
-    .hero{
-      max-width:360px;
-      width:100%;
-      margin:0 auto 16px;
-      border-radius:20px;
-      box-shadow:
-        0 0 40px rgba(255,79,216,.35),
-        0 0 90px rgba(0,240,255,.25);
-      animation:float 6s ease-in-out infinite;
+    @keyframes pulse {
+      from { box-shadow:0 0 10px #0f0, 0 0 20px #0f0; }
+      to   { box-shadow:0 0 30px #0f0, 0 0 60px #0f0; }
     }
-    @keyframes float{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-6px)}
+    @keyframes glitch {
+      0%,100% { transform:translate(0); }
+      20% { transform:translate(-2px, 2px); }
+      40% { transform:translate(2px, -2px); }
+      60% { transform:translate(-2px, -2px); }
+      80% { transform:translate(2px, 2px); }
     }
-
-    .tag{
-      font-family:Orbitron;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      font-size:12px;
-      color:var(--muted);
+    @keyframes glitch-cursor {
+      0%,100% { filter:brightness(1); }
+      10% { filter:brightness(1.5) hue-rotate(90deg); }
+      30% { filter:brightness(0.8) hue-rotate(-60deg); }
     }
-
-    h1{
-      font-family:Orbitron;
-      font-weight:800;
-      letter-spacing:.1em;
-      margin:8px 0 4px;
-      text-shadow:0 0 18px rgba(107,124,255,.45);
-    }
-
-    .sub{opacity:.9}
-
-    /* Twitch status */
-    .twitch-status{
-      margin-top:10px;
+    .links {
       display:flex;
+      flex-wrap:wrap;
       justify-content:center;
-      align-items:center;
-      gap:10px;
-      font-family:Orbitron;
-      font-size:12px;
-      letter-spacing:.14em;
+      gap:1.5rem;
+      margin:2rem 0;
     }
-    .dot{
-      width:12px;height:12px;border-radius:50%;background:var(--offline);
+    a {
+      color:#0f0;
+      text-decoration:none;
+      font-size:1.3rem;
+      padding:0.8rem 1.5rem;
+      border:1px solid #0f0;
+      border-radius:8px;
+      transition:all 0.3s;
+      text-shadow:0 0 5px #0f0;
     }
-    .online{
-      background:var(--online);
-      box-shadow:0 0 10px rgba(0,255,156,.8),0 0 30px rgba(0,255,156,1);
-      animation:pulse 1.8s infinite;
+    a:hover {
+      background:#0f03;
+      box-shadow:0 0 20px #0f0;
+      transform:scale(1.05);
     }
-    @keyframes pulse{
-      0%{box-shadow:0 0 10px rgba(0,255,156,.6)}
-      50%{box-shadow:0 0 30px rgba(0,255,156,1)}
-      100%{box-shadow:0 0 10px rgba(0,255,156,.6)}
+    .spotify-embed {
+      margin:3rem auto;
+      max-width:500px;
     }
-
-    /* Cards */
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:16px;
-      margin:32px 0;
+    .merch-tease {
+      margin:3rem 0;
+      font-size:1.5rem;
     }
-    .card{
-      background:var(--glass);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:18px;
-      padding:16px;
-      backdrop-filter:blur(12px);
-      box-shadow:0 20px 40px rgba(0,0,0,.4);
+    footer {
+      margin-top:4rem;
+      padding:2rem;
+      font-size:1.1rem;
+      opacity:0.8;
     }
-    .card h3{font-family:Orbitron;margin:4px 0 10px}
-
-    .links a{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:10px 12px;margin:8px 0;
-      background:rgba(255,255,255,.06);
-      border-radius:12px;
-      text-decoration:none;color:var(--fg);
-      transition:.25s;
-    }
-    .links a:hover{filter:brightness(1.25);transform:translateX(2px)}
-
-    /* Merch */
-    .merch img{
-      width:100%;
-      border-radius:16px;
-      box-shadow:0 0 30px rgba(255,79,216,.25);
-    }
-
-    footer{text-align:center;margin-top:40px;opacity:.8}
   </style>
 </head>
 <body>
 
-<div class="wrap">
+  <canvas id="matrix"></canvas>
 
-  <header>
-    <img class="hero" src="https://i.pinimg.com/originals/5R/7V/rv/5R7VrvJ4D.jpg" alt="Rxzwell main artwork" />
-    <div class="tag">Broward, Florida · Genre FLuid</div>
-    <h1>RXZWELL</h1>
-    <div class="sub">Creat0r 0F ARt</div>
+  <div class="cursor"></div>
 
-    <div class="twitch-status">
-      <div class="dot online"></div>
-      <div>LIVE ON TWITCH</div>
-    </div>
-  </header>
+  <div class="content">
+    <h1>Rxzwell-VII</h1>
+    <p style="font-size:1.8rem; margin:1rem 0;">Broward, Florida • Genre Fluid Creator of ARt</p>
+    <p style="font-size:1.4rem; max-width:800px; margin:0 auto 2rem;">Underground producer • Musician • Visual alchemist • Breaking the simulation one beat at a time</p>
 
-  <section class="cards">
-    <div class="card">
-      <h3>Music</h3>
-      <div class="links">
-        <a href="https://open.spotify.com/artist/6qmhxNUynVviDvxQRggtFA" target="_blank">Spotify ↗</a>
-        <a href="https://on.soundcloud.com/fKI5mvsiiI3ReV02WA" target="_blank">SoundCloud ↗</a>
-        <a href="https://youtube.com/@rxzwell" target="_blank">YouTube ↗</a>
-        <a href="https://music.apple.com/us/artist/rxzwell/1720338869" target="_blank">Apple Music ↗</a>
-      </div>
+    <div class="links">
+      <a href="https://on.soundcloud.com/fKI5mvsiiI3ReV02WA" target="_blank">SoundCloud</a>
+      <a href="https://youtube.com/@rxzwell" target="_blank">YouTube</a>
+      <a href="https://open.spotify.com/artist/6qmhxNUynVviDvxQRggtFA" target="_blank">Spotify</a>
+      <a href="https://music.apple.com/us/artist/rxzwell/1720338869" target="_blank">Apple Music</a>
+      <a href="https://bandlab.com/post/eee5a961-26a3-4086-be4b-ea691554e8c9" target="_blank">BandLab</a>
     </div>
 
-    <div class="card">
-      <h3>Social / Streaming</h3>
-      <div class="links">
-        <a href="https://instagram.com/rxzwell" target="_blank">Instagram ↗</a>
-        <a href="https://www.tiktok.com/@rxzwell007" target="_blank">TikTok ↗</a>
-        <a href="https://twitch.tv/rxzwell" target="_blank">Twitch ↗</a>
-        <a href="https://www.linkedin.com/in/rxzwell-vii-b935922bb/" target="_blank">LinkedIn ↗</a>
-      </div>
+    <div class="links">
+      <a href="https://instagram.com/rxzwell" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/in/rxzwell-vii-b935922bb/" target="_blank">LinkedIn</a>
+      <a href="https://pin.it/1pgh7Sbk8" target="_blank">Pinterest</a>
+      <a href="https://www.tiktok.com/@rxzwell007" target="_blank">TikTok</a>
+      <a href="https://twitch.tv/rxzwell" target="_blank">Twitch</a>
     </div>
 
-    <div class="card">
-      <h3>Album Merch</h3>
-      <div class="merch">
-        <img src="https://i.pinimg.com/originals/3E/L8/dG/3EL8dGO9n.jpg" alt="Rxzwell merch" />
-      </div>
+    <h2>Stream & Vibe</h2>
+    <div class="spotify-embed">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/6qmhxNUynVviDvxQRggtFA?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
     </div>
-  </section>
 
-  <footer>
     <h2>TOUR COMING SOON</h2>
-    <small>© Rxzwell</small>
-  </footer>
+    <p class="merch-tease">Album merch dropping with the simulation reset • Stay plugged in 🔥</p>
 
-</div>
+    <footer>
+      Wake up, Rxzwell... The Matrix has you. • © 2026 Genre Fluid ARt
+    </footer>
+  </div>
 
+  <script>
+    // Matrix digital rain
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/'.split('');
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#0f0';
+      ctx.font = fontSize + 'px monospace';
+
+      drops.forEach((y, i) => {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        const x = i * fontSize;
+
+        ctx.fillText(text, x, y * fontSize);
+
+        if (y * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      });
+    }
+
+    setInterval(draw, 35);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Custom cursor follow
+    const cursor = document.querySelector('.cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+  </script>
 </body>
-</html>
+</html> 
