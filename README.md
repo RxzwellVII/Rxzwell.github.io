@@ -272,6 +272,21 @@ emotion, and futuristic rebellion. Available for booking, collaborations, and pr
 <footer>
 © 2026 Rxzwell — All Rights Reserved
 </footer>
+<script>
+const laserLeft = document.createElement('div');
+laserLeft.className = 'laser-eye';
+document.body.appendChild(laserLeft);
 
-</body>
+const laserRight = document.createElement('div');
+laserRight.className = 'laser-eye';
+document.body.appendChild(laserRight);
+
+document.addEventListener('mousemove', (e) => {
+  // Offset lasers to roughly cat eye positions
+  laserLeft.style.left = (e.clientX - 5) + 'px';
+  laserLeft.style.top = (e.clientY - 5) + 'px';
+  laserRight.style.left = (e.clientX + 5) + 'px';
+  laserRight.style.top = (e.clientY - 5) + 'px';
+});
+</script></body>
 </html>
