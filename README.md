@@ -1,292 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rxzwell | Official</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rxzwell — Creat0r 0F ARt</title>
+  <meta name="description" content="Rxzwell · Broward, Florida · Genre FLuid · Creat0r 0F ARt" />
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-* {margin:0;padding:0;box-sizing:border-box;}
+  <!-- Base Styles -->
+  <style>
+    :root{
+      --bg:#05060a;
+      --fg:#e6e6ff;
+      --neon:#6b7cff;
+      --pink:#ff4fd8;
+      --cyan:#00f0ff;
+      --muted:#9aa0ff;
+      --card:rgba(255,255,255,.04);
+      --glass:rgba(20,20,40,.55);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--fg);
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(0,240,255,.08), transparent 40%),
+        radial-gradient(800px 600px at 90% 20%, rgba(255,79,216,.08), transparent 40%),
+        linear-gradient(180deg, #04050a, #07081a 60%, #04050a);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      overflow-x:hidden;
+    }
 
-body{
-background:#050507;
-color:white;
-font-family:'Rajdhani',sans-serif;
-overflow-x:hidden;
-cursor: crosshair;
-}
+    /* Scanlines + subtle distortion */
+    body::after{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,.03) 0px,
+          rgba(255,255,255,.02) 1px,
+          rgba(0,0,0,0) 3px
+        );
+      mix-blend-mode:overlay;
+      animation:scan 6s linear infinite;
+    }
+    @keyframes scan{0%{opacity:.12}50%{opacity:.2}100%{opacity:.12}}
 
-/* Optional custom cursor */
-/* body { cursor: url('cursor.png'), auto; } */
+    /* Cursor: cat with laser eyes */
+    .cursor{
+      position:fixed; left:0; top:0; width:36px; height:36px; pointer-events:none; z-index:9999;
+      transform:translate(-50%,-50%);
+      filter:drop-shadow(0 0 10px rgba(0,240,255,.8));
+    }
+    .cursor svg{width:100%; height:100%}
+    .laser{
+      animation:laser 1.2s linear infinite;
+      transform-origin:0 50%;
+    }
+    @keyframes laser{
+      0%{opacity:.2}50%{opacity:1}100%{opacity:.2}
+    }
 
-.neon-green{
-color:#00ff99;
-text-shadow:0 0 8px #00ff99,0 0 25px #00ff99;
-}
+    /* Layout */
+    .wrap{max-width:1100px; margin:0 auto; padding:28px 20px 80px}
+    header{
+      display:grid; gap:18px; align-items:center; text-align:center; padding:28px 0 10px;
+    }
+    .tag{
+      font-family:Orbitron; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--muted); font-size:12px
+    }
+    h1{
+      font-family:Orbitron; font-weight:800; letter-spacing:.08em; margin:6px 0 4px;
+      text-shadow:0 0 18px rgba(107,124,255,.45);
+    }
+    .glitch{
+      position:relative; display:inline-block;
+    }
+    .glitch::before,.glitch::after{
+      content:attr(data-text); position:absolute; inset:0;
+      mix-blend-mode:screen; opacity:.7
+    }
+    .glitch::before{transform:translate(2px, -1px); color:var(--cyan)}
+    .glitch::after{transform:translate(-2px, 1px); color:var(--pink)}
+    .sub{color:#cfd2ff; opacity:.9}
 
-.neon-pink{
-color:#ff00cc;
-text-shadow:0 0 8px #ff00cc,0 0 25px #ff00cc;
-}
+    .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin:28px 0}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px; padding:16px 16px 18px; backdrop-filter: blur(10px);
+      box-shadow:0 20px 40px rgba(0,0,0,.35);
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover{transform:translateY(-4px); box-shadow:0 30px 70px rgba(0,0,0,.5)}
+    .card h3{font-family:Orbitron; margin:4px 0 10px}
+    .links a{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 12px; margin:8px 0; border-radius:12px; text-decoration:none; color:var(--fg);
+      background:var(--glass); border:1px solid rgba(255,255,255,.08);
+      transition:filter .2s ease, transform .2s ease;
+    }
+    .links a:hover{filter:brightness(1.2); transform:translateX(2px)}
 
-/* HERO */
-.hero{
-height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.85)),
-url('rxzwell-hero.jpg') center/cover no-repeat;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-position:relative;
-}
+    .embed{
+      margin:24px 0 10px; padding:14px; border-radius:16px; background:var(--card);
+      border:1px solid rgba(255,255,255,.08)
+    }
 
-.hero h1{
-font-family:'Orbitron',sans-serif;
-font-size:5rem;
-letter-spacing:10px;
-animation:glitch 1.5s infinite;
-}
+    /* Merch */
+    .merch{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-top:10px
+    }
+    .ph{
+      aspect-ratio:1/1; border-radius:14px; background:
+        linear-gradient(135deg, rgba(107,124,255,.25), rgba(255,79,216,.25));
+      border:1px dashed rgba(255,255,255,.25);
+      display:grid; place-items:center; color:#fff; opacity:.8
+    }
 
-@keyframes glitch{
-0%{text-shadow:2px 2px #ff00cc,-2px -2px #00ff99;}
-50%{text-shadow:-2px -2px #ff00cc,2px 2px #00ff99;}
-100%{text-shadow:2px -2px #ff00cc,-2px 2px #00ff99;}
-}
+    footer{
+      margin-top:40px; text-align:center; color:#b9bcff; opacity:.8
+    }
 
-.pulse7{
-font-size:3rem;
-margin-top:15px;
-animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-0%{opacity:1;text-shadow:0 0 10px #00ff99;}
-50%{opacity:.5;text-shadow:0 0 40px #00ff99;}
-100%{opacity:1;text-shadow:0 0 10px #00ff99;}
-}
-
-/* Scroll distortion */
-.section{
-padding:100px 20px;
-max-width:1100px;
-margin:auto;
-text-align:center;
-transition:all .6s ease;
-}
-
-.section:hover{
-transform:scale(1.02);
-filter:contrast(120%);
-}
-
-.section h2{
-font-family:'Orbitron';
-font-size:2.5rem;
-margin-bottom:30px;
-}
-
-/* Buttons */
-.links a{
-display:inline-block;
-margin:10px;
-padding:14px 30px;
-border:2px solid #00ff99;
-color:#00ff99;
-text-decoration:none;
-font-weight:600;
-transition:.3s;
-}
-
-.links a:hover{
-background:#00ff99;
-color:black;
-box-shadow:0 0 20px #00ff99;
-transform:scale(1.05);
-}
-
-/* Tour cards */
-.tour{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-}
-
-.tour div{
-border:1px solid #222;
-padding:20px;
-width:250px;
-background:#0f0f14;
-}
-
-/* Merch */
-.merch img{
-width:200px;
-border:1px solid #222;
-margin:15px;
-transition:.3s;
-}
-
-.merch img:hover{
-transform:scale(1.1);
-box-shadow:0 0 20px #ff00cc;
-}
-
-/* Email form */
-input[type=email]{
-padding:12px;
-width:250px;
-background:#111;
-border:1px solid #00ff99;
-color:white;
-}
-
-button{
-padding:12px 20px;
-background:#00ff99;
-border:none;
-cursor:pointer;
-font-weight:bold;
-}
-
-/* Scanlines */
-body::after{
-content:"";
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:repeating-linear-gradient(
-to bottom,
-rgba(255,255,255,0.02),
-rgba(255,255,255,0.02) 1px,
-transparent 1px,
-transparent 3px);
-pointer-events:none;
-}
-
-footer{
-padding:40px;
-opacity:.6;
-border-top:1px solid #222;
-text-align:center;
-}
-
-</style>
+    /* Flicker */
+    .flicker{animation:flicker 3s infinite}
+    @keyframes flicker{
+      0%,19%,22%,62%,64%,70%,100%{opacity:1}
+      20%,21%,63%,69%{opacity:.6}
+    }
+  </style>
 </head>
 <body>
-
-<!-- Optional Intro Audio -->
-<audio autoplay loop muted>
-<source src="intro.mp3" type="audio/mpeg">
-</audio>
-
-<section class="section">
-  <h2 class="neon-pink">STREAM</h2>
-  <div class="links">
-    <a href="https://open.spotify.com/artist/6qmhxNUynVviDvxQRggtFA" target="_blank">Spotify</a>
-    <a href="https://music.apple.com/us/artist/rxzwell/1720338869" target="_blank">Apple Music</a>
-    <a href="https://on.soundcloud.com/fKI5mvsiiI3ReV02WA" target="_blank">SoundCloud</a>
-    <a href="https://bandlab.com/post/eee5a961-26a3-4086-be4b-ea691554e8c9" target="_blank">BandLab</a>
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor">
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="16" fill="#111" stroke="#6b7cff"/>
+      <path d="M20 24 L16 16 M44 24 L48 16" stroke="#6b7cff" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="26" cy="32" r="2" fill="#00f0ff"/>
+      <circle cx="38" cy="32" r="2" fill="#ff4fd8"/>
+      <rect class="laser" x="40" y="31" width="24" height="2" fill="#ff4fd8"/>
+      <rect class="laser" x="0" y="31" width="24" height="2" fill="#00f0ff"/>
+    </svg>
   </div>
 
-  <br><br>
+  <div class="wrap">
+    <header>
+      <img src="/mnt/data/openart-image_apCxoAPn_1768320325579_raw.jpg" alt="Rxzwell main artwork" style="max-width:320px;width:100%;border-radius:18px;box-shadow:0 0 40px rgba(255,79,216,.35),0 0 80px rgba(0,240,255,.25);margin:0 auto 12px;display:block" />
+      <div class="tag">Broward, Florida · Genre FLuid</div>
+      <h1 class="glitch flicker" data-text="RXZWELL">RXZWELL</h1>
+      <div class="sub">Creat0r 0F ARt</div>
+    </header>
 
-  <iframe style="border-radius:12px"
-    src="https://open.spotify.com/embed/artist/6qmhxNUynVviDvxQRggtFA"
-    width="100%" height="352" frameborder="0"
-    allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-  </iframe>
-</section>
+    <section class="cards">
+      <div class="card">
+        <h3>Music · Listen Here</h3>
+        <div class="links">
+          <a href="https://on.soundcloud.com/fKI5mvsiiI3ReV02WA" target="_blank">SoundCloud <span>↗</span></a>
+          <a href="https://youtube.com/@rxzwell" target="_blank">YouTube <span>↗</span></a>
+          <a href="https://open.spotify.com/artist/6qmhxNUynVviDvxQRggtFA" target="_blank">Spotify <span>↗</span></a>
+          <a href="https://bandlab.com/post/eee5a961-26a3-4086-be4b-ea691554e8c9" target="_blank">BandLab <span>↗</span></a>
+          <a href="https://music.apple.com/us/artist/rxzwell/1720338869" target="_blank">Apple Music <span>↗</span></a>
+        </div>
+      </div>
 
-<section class="section">
-  <h2 class="neon-green">CONNECT</h2>
-  <div class="links">
-    <a href="https://youtube.com/@rxzwell" target="_blank">YouTube</a>
-    <a href="https://instagram.com/rxzwell" target="_blank">Instagram</a>
-    <a href="https://twitch.tv/rxzwell" target="_blank">Twitch</a>
-    <a href="https://www.linkedin.com/in/rxzwell-vii-b935922bb/" target="_blank">LinkedIn</a>
-    <a href="https://pin.it/1pgh7Sbk8" target="_blank">Pinterest</a>
+      <div class="card">
+        <h3>Contact · Social</h3>
+        <div class="links">
+          <a href="https://instagram.com/rxzwell" target="_blank">Instagram <span>↗</span></a>
+          <a href="https://www.linkedin.com/in/rxzwell-vii-b935922bb/" target="_blank">LinkedIn <span>↗</span></a>
+          <a href="https://pin.it/1pgh7Sbk8" target="_blank">Pinterest <span>↗</span></a>
+          <a href="https://www.tiktok.com/@rxzwell007" target="_blank">TikTok <span>↗</span></a>
+          <a href="https://twitch.tv/rxzwell" target="_blank">Twitch <span>↗</span></a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Spotify · Preview</h3>
+        <div class="embed">
+          <!-- Autoplay may be blocked by browsers; kept muted-safe by default -->
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/6qmhxNUynVviDvxQRggtFA?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Album Merch</h3>
+      <div class="merch">
+        <img src="/mnt/data/IMG_6522.jpeg" alt="Rxzwell merch package" style="width:100%;border-radius:14px;border:1px solid rgba(255,255,255,.15);box-shadow:0 10px 30px rgba(0,0,0,.5)" />
+        <img src="/mnt/data/IMG_6523.jpeg" alt="Rxzwell merch USB" style="width:100%;border-radius:14px;border:1px solid rgba(255,255,255,.15);box-shadow:0 10px 30px rgba(0,0,0,.5)" />
+      </div>
+        <div class="ph">Image 2</div>
+        <div class="ph">Image 3</div>
+        <div class="ph">Image 4</div>
+      </div>
+    </section>
+
+    <footer>
+      <h2 class="flicker">TOUR COMING SOON</h2>
+      <small>© Rxzwell</small>
+    </footer>
   </div>
-</section></div>
 
-<br><br>
-
-<iframe style="border-radius:12px"
-src="https://open.spotify.com/embed/artist/6qmhxNUynVviDvxQRggtFA"
-width="100%" height="352" frameBorder="0"
-allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-</iframe>
-</section>
-
-<section class="section">
-<h2 class="neon-pink">TOUR</h2>
-<div class="tour">
-<div>
-<h3>Miami, FL</h3>
-<p>March 12, 2026</p>
-</div>
-<div>
-<h3>Orlando, FL</h3>
-<p>April 2, 2026</p>
-</div>
-<div>
-<h3>Tampa, FL</h3>
-<p>April 18, 2026</p>
-</div>
-</div>
-</section>
-
-<section class="section">
-<h2 class="neon-green">MERCH</h2>
-<div class="merch">
-<img src="https://via.placeholder.com/200x250" alt="Merch1">
-<img src="https://via.placeholder.com/200x250" alt="Merch2">
-</div>
-</section>
-
-<section class="section">
-<h2 class="neon-pink">JOIN THE UNDERGROUND</h2>
-<form>
-<input type="email" placeholder="Enter your email">
-<button>SUBMIT</button>
-</form>
-</section>
-
-<section class="section">
-<h2 class="neon-green">EPK</h2>
-<p>
-Rxzwell is a Broward, Florida-based genre-fluid punk artist blending distortion,
-emotion, and futuristic rebellion. Available for booking, collaborations, and press.
-</p>
-<br>
-<a class="links" href="mailto:yourbookingemail@email.com">BOOKING INQUIRIES</a>
-</section>
-
-<footer>
-© 2026 Rxzwell — All Rights Reserved
-</footer>
-<script>
-const laserLeft = document.createElement('div');
-laserLeft.className = 'laser-eye';
-document.body.appendChild(laserLeft);
-
-const laserRight = document.createElement('div');
-laserRight.className = 'laser-eye';
-document.body.appendChild(laserRight);
-
-document.addEventListener('mousemove', (e) => {
-  // Offset lasers to roughly cat eye positions
-  laserLeft.style.left = (e.clientX - 5) + 'px';
-  laserLeft.style.top = (e.clientY - 5) + 'px';
-  laserRight.style.left = (e.clientX + 5) + 'px';
-  laserRight.style.top = (e.clientY - 5) + 'px';
-});
-</script></body>
+  <!-- Interactions -->
+  <script>
+    const c = document.getElementById('cursor');
+    window.addEventListener('mousemove', e => {
+      c.style.left = e.clientX + 'px';
+      c.style.top  = e.clientY + 'px';
+    });
+  </script>
+</body>
 </html>
+
+
